@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Seatselection">
+	
+	<resultMap id="result" type="Seatselection">
+	<result property="email_id" column="email_id"/>
+	<result property="movie_id" column="movie_id"/>
+	 <result property="theater_id" column="theater_id"/>
+	 <result property="Date" column="date"/>
+	 <result property="seats" column="seat_num"/>
+	 <result property="cost" column="cost"/>
+	 </resultMap>
+	
+	 
+	 <insert id="insert" parameterType="Seatselection">
+INSERT INTO user_movie_theater (email_id,movie_id,theater_id, seat_num, date) 
+	VALUES (#{email_id},#{movie_id},#{theater_id},#{seats},STR_TO_DATE(#{Date}, '%m/%d/%Y'));
+</insert>
+
+<select id="getAllS" parameterType="Seatselection" resultMap="result">
+    
+    select S.seat_num from seat_availability S where S.movie_id=#{movie_id} and S.theater_id=#{theater_id} and S.booked = "NO";
+</select>
+
+<select id="getAllC" parameterType="Seatselection" resultMap="result">
+    
+    select cost from ticketcalculation where email_id =#{email_id}
+</select>
+
+ </mapper>

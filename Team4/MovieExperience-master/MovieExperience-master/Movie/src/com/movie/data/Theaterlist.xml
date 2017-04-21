@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Theatermoviesearch">
+	
+	<resultMap id="result" type="Theatermoviesearch">
+	 <result property="moviename" column="movie_name"/>
+	 <result property="Zipcode" column="zip"/>
+	 <result property="Theatername" column="theater_name"/>
+	 <result property="Date" column="date"/>
+	</resultMap>
+	
+    <select id="getAllT" parameterType="Theatermoviesearch" resultMap="result">
+    
+   select T.theater_name,T.zip,#{Date} as date from movie_theater MT,theater T, 
+   where MT.theater_id = T.theater_id and M.movie_id=MT.movie_id
+    and theater_name like #{Theatername} and T.zip = #{Zipcode} and  from_date &lt;= STR_TO_DATE(#{Date},
+     '%m/%d/%Y') AND to_date &gt;= STR_TO_DATE(#{Date}, '%m/%d/%Y')	
+</select>
+
+<select id="getAllM" parameterType="Theatermoviesearch" resultMap="result">
+    
+    select M.movie_name from movie_details M ,movie_theater MT,theater T
+    where M.movie_id = MT.movie_id and MT.theater_id = T.theater_id 
+   AND T.theater_name like #{Theatername} and from_date &lt;= #{Date} AND to_date &gt;= #{Date} 	
+</select> 
+
+   </mapper>

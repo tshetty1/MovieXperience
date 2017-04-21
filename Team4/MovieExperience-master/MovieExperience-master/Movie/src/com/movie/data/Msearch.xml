@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Searchmovie">
+<resultMap id="result" type="Moviesearch">
+	    <result property="moviename" column="movie_name"/>
+	    <result property="movielink" column="link"/>
+	     </resultMap>
+	     
+	     <select id="getmoviesearch" parameterType="String" resultMap="result">
+  	
+	  	SELECT M.movie_name,H.link from movie_details M INNER JOIN home_experience H
+	  	 on M.movie_id = H.movie_id AND M.movie_name like #{searchmovie}
+	  	 
+  </select>
+  </mapper>
+  

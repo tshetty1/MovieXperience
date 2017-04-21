@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="Signup" type="com.movie.model.Signup"/>
+		<typeAlias alias="Login" type="com.movie.model.Login"/>
+		<typeAlias alias="Moviesearch" type="com.movie.model.Moviesearch"/>
+		<typeAlias alias="Theatermoviesearch" type="com.movie.model.Theatermoviesearch"/>
+	<typeAlias alias="Seatselection" type="com.movie.model.Seatselection"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+		  <transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/ssdi"/>
+				<property name="username" value="root"/>
+				<property name="password" value="12345"/>
+			</dataSource>
+	   </environment>
+	   
+	   <environment id="test">
+		  <transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/ssdi_test"/>
+				<property name="username" value="root"/>
+				<property name="password" value="12345"/>
+			</dataSource>
+	   </environment>
+	</environments>
+	
+    <mappers>
+  	   <mapper resource="com/movie/data/SignUp.xml"/>
+  	   <mapper resource="com/movie/data/Login.xml"/> 
+  	    	<mapper resource="com/movie/data/Msearch.xml"/> 
+  	    	 <mapper resource="com/movie/data/Moviedropdown.xml"/>  
+  	    	 <mapper resource="com/movie/data/Theatermoviezipcode.xml"/>
+  	    	   <mapper resource="com/movie/data/Seatselection.xml"/>
+  	    	   
+    </mappers>
+
+</configuration>
